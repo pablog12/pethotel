@@ -1,0 +1,138 @@
+{
+  "connection": "default",
+  "collectionName": "publication",
+  "info": {
+    "name": "publication",
+    "description": "User offering to be a pet host"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "title": {
+      "default": "",
+      "maxLength": 60,
+      "minLength": 5,
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "default": "",
+      "maxLength": 6000,
+      "type": "text"
+    },
+    "pictures": {
+      "collection": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "hasChildren": {
+      "default": false,
+      "type": "boolean"
+    },
+    "otherPets": {
+      "default": false,
+      "type": "boolean"
+    },
+    "price": {
+      "default": 0,
+      "min": 1,
+      "type": "decimal",
+      "required": true
+    },
+    "exoticPets": {
+      "default": false,
+      "type": "boolean"
+    },
+    "user": {
+      "model": "user",
+      "via": "publication",
+      "plugin": "users-permissions"
+    },
+    "femalePets": {
+      "default": false,
+      "type": "boolean"
+    },
+    "malePets": {
+      "default": false,
+      "type": "boolean"
+    },
+    "houseType": {
+      "default": "",
+      "type": "enumeration",
+      "enum": [
+        "Casa",
+        "Apartamento"
+      ]
+    },
+    "smallPets": {
+      "default": false,
+      "type": "boolean"
+    },
+    "mediumPets": {
+      "default": false,
+      "type": "boolean"
+    },
+    "bigPets": {
+      "default": false,
+      "type": "boolean"
+    },
+    "takesCats": {
+      "default": false,
+      "type": "boolean"
+    },
+    "takesDogs": {
+      "default": false,
+      "type": "boolean"
+    },
+    "addressLatitude": {
+      "default": "",
+      "type": "float"
+    },
+    "addresslongitude": {
+      "default": "",
+      "type": "float"
+    },
+    "dateStart": {
+      "default": "",
+      "type": "date",
+      "required": true
+    },
+    "dateEnd": {
+      "default": "",
+      "type": "date",
+      "required": true
+    },
+    "formatted_address": {
+      "default": "",
+      "type": "text"
+    },
+    "street_number": {
+      "default": "",
+      "type": "text"
+    },
+    "route": {
+      "default": "",
+      "type": "text"
+    },
+    "locality": {
+      "default": "",
+      "type": "text"
+    },
+    "administrative_area_level_2": {
+      "default": "",
+      "type": "text"
+    },
+    "administrative_area_level_1": {
+      "default": "",
+      "type": "text"
+    },
+    "postal_code": {
+      "default": "",
+      "type": "text"
+    }
+  }
+}

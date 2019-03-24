@@ -1,0 +1,360 @@
+input createPublicationInput {
+  data: PublicationInput
+}
+
+type createPublicationPayload {
+  publication: Publication
+}
+
+input createRoleInput {
+  data: RoleInput
+}
+
+type createRolePayload {
+  role: UsersPermissionsRole
+}
+
+input createUserInput {
+  data: UserInput
+}
+
+type createUserPayload {
+  user: UsersPermissionsUser
+}
+
+"""
+The `DateTime` scalar represents a date and time following the ISO 8601 standard
+"""
+scalar DateTime
+
+input deletePublicationInput {
+  where: InputID
+}
+
+type deletePublicationPayload {
+  publication: Publication
+}
+
+input deleteRoleInput {
+  where: InputID
+}
+
+type deleteRolePayload {
+  role: UsersPermissionsRole
+}
+
+input deleteUserInput {
+  where: InputID
+}
+
+type deleteUserPayload {
+  user: UsersPermissionsUser
+}
+
+input editFileInput {
+  name: String
+  hash: String
+  sha256: String
+  ext: String
+  mime: String
+  size: String
+  url: String
+  provider: String
+  public_id: String
+  related: [ID]
+}
+
+input editPublicationInput {
+  title: String
+  description: String
+  pictures: [ID]
+  hasChildren: Boolean
+  otherPets: Boolean
+  price: Float
+  exoticPets: Boolean
+  user: ID
+  femalePets: Boolean
+  malePets: Boolean
+  houseType: ENUM_PUBLICATION_HOUSETYPE
+  smallPets: Boolean
+  mediumPets: Boolean
+  bigPets: Boolean
+  takesCats: Boolean
+  takesDogs: Boolean
+  addressLatitude: Float
+  addresslongitude: Float
+  dateStart: DateTime
+  dateEnd: DateTime
+  formatted_address: String
+  street_number: String
+  route: String
+  locality: String
+  administrative_area_level_2: String
+  administrative_area_level_1: String
+  postal_code: String
+}
+
+input editRoleInput {
+  name: String
+  description: String
+  type: String
+  permissions: [ID]
+  users: [ID]
+}
+
+input editUserInput {
+  username: String
+  email: String
+  provider: String
+  password: String
+  resetPasswordToken: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: ID
+  publication: ID
+}
+
+enum ENUM_PUBLICATION_HOUSETYPE {
+  Casa
+  Apartamento
+}
+
+input FileInput {
+  name: String!
+  hash: String!
+  sha256: String
+  ext: String
+  mime: String!
+  size: String!
+  url: String!
+  provider: String!
+  public_id: String
+  related: [ID]
+}
+
+input InputID {
+  id: ID!
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | Publication | createPublicationPayload | updatePublicationPayload | deletePublicationPayload | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload
+
+type Mutation {
+  createPublication(input: createPublicationInput): createPublicationPayload
+  updatePublication(input: updatePublicationInput): updatePublicationPayload
+  deletePublication(input: deletePublicationInput): deletePublicationPayload
+
+  """Create a new role"""
+  createRole(input: createRoleInput): createRolePayload
+
+  """Update an existing role"""
+  updateRole(input: updateRoleInput): updateRolePayload
+
+  """Delete an existing role"""
+  deleteRole(input: deleteRoleInput): deleteRolePayload
+
+  """Create a new user"""
+  createUser(input: createUserInput): createUserPayload
+
+  """Update an existing user"""
+  updateUser(input: updateUserInput): updateUserPayload
+
+  """Delete an existing user"""
+  deleteUser(input: deleteUserInput): deleteUserPayload
+  upload(refId: ID, ref: String, source: String, file: Upload!): UploadFile!
+}
+
+"""User offering to be a pet host"""
+type Publication {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  title: String!
+  description: String
+  hasChildren: Boolean
+  otherPets: Boolean
+  price: Float!
+  exoticPets: Boolean
+  user: UsersPermissionsUser
+  femalePets: Boolean
+  malePets: Boolean
+  houseType: ENUM_PUBLICATION_HOUSETYPE
+  smallPets: Boolean
+  mediumPets: Boolean
+  bigPets: Boolean
+  takesCats: Boolean
+  takesDogs: Boolean
+  addressLatitude: Float
+  addresslongitude: Float
+  dateStart: DateTime!
+  dateEnd: DateTime!
+  formatted_address: String
+  street_number: String
+  route: String
+  locality: String
+  administrative_area_level_2: String
+  administrative_area_level_1: String
+  postal_code: String
+  pictures(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
+}
+
+input PublicationInput {
+  title: String!
+  description: String
+  pictures: [ID]
+  hasChildren: Boolean
+  otherPets: Boolean
+  price: Float!
+  exoticPets: Boolean
+  user: ID
+  femalePets: Boolean
+  malePets: Boolean
+  houseType: ENUM_PUBLICATION_HOUSETYPE
+  smallPets: Boolean
+  mediumPets: Boolean
+  bigPets: Boolean
+  takesCats: Boolean
+  takesDogs: Boolean
+  addressLatitude: Float
+  addresslongitude: Float
+  dateStart: DateTime!
+  dateEnd: DateTime!
+  formatted_address: String
+  street_number: String
+  route: String
+  locality: String
+  administrative_area_level_2: String
+  administrative_area_level_1: String
+  postal_code: String
+}
+
+type Query {
+  publication(id: ID!): Publication
+  publications(sort: String, limit: Int, start: Int, where: JSON): [Publication]
+  files(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
+  role(id: ID!): UsersPermissionsRole
+
+  """
+  Retrieve all the existing roles. You can't apply filters on this query.
+  """
+  roles(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsRole]
+  user(id: ID!): UsersPermissionsUser
+  users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
+  me: UsersPermissionsMe
+}
+
+input RoleInput {
+  name: String!
+  description: String
+  type: String
+  permissions: [ID]
+  users: [ID]
+}
+
+input updatePublicationInput {
+  where: InputID
+  data: editPublicationInput
+}
+
+type updatePublicationPayload {
+  publication: Publication
+}
+
+input updateRoleInput {
+  where: InputID
+  data: editRoleInput
+}
+
+type updateRolePayload {
+  role: UsersPermissionsRole
+}
+
+input updateUserInput {
+  where: InputID
+  data: editUserInput
+}
+
+type updateUserPayload {
+  user: UsersPermissionsUser
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
+
+type UploadFile {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String!
+  hash: String!
+  sha256: String
+  ext: String
+  mime: String!
+  size: String!
+  url: String!
+  provider: String!
+  public_id: String
+  related(sort: String, limit: Int, start: Int, where: JSON): [Morph]
+}
+
+input UserInput {
+  username: String!
+  email: String!
+  provider: String
+  password: String
+  resetPasswordToken: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: ID
+  publication: ID
+}
+
+type UsersPermissionsMe {
+  _id: ID!
+  username: String!
+  email: String!
+  confirmed: Boolean
+  blocked: Boolean
+  role: UsersPermissionsMeRole
+}
+
+type UsersPermissionsMeRole {
+  _id: ID!
+  name: String!
+  description: String
+  type: String
+}
+
+type UsersPermissionsPermission {
+  id: ID!
+  type: String!
+  controller: String!
+  action: String!
+  enabled: Boolean!
+  policy: String
+  role: UsersPermissionsRole
+}
+
+type UsersPermissionsRole {
+  id: ID!
+  name: String!
+  description: String
+  type: String
+  permissions(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsPermission]
+  users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
+}
+
+type UsersPermissionsUser {
+  id: ID!
+  username: String!
+  email: String!
+  provider: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: UsersPermissionsRole
+  publication: Publication
+}
