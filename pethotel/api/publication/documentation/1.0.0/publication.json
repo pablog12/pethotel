@@ -580,7 +580,7 @@
               }
             }
           },
-          "hasChildren": {
+          "hasKids": {
             "type": "boolean",
             "default": false
           },
@@ -714,6 +714,10 @@
           "postal_code": {
             "type": "string",
             "default": ""
+          },
+          "background_colour": {
+            "type": "string",
+            "default": "#fafafa"
           }
         }
       },
@@ -736,7 +740,7 @@
             "default": "",
             "maxLength": 6000
           },
-          "hasChildren": {
+          "hasKids": {
             "type": "boolean",
             "default": false
           },
@@ -834,6 +838,10 @@
           "postal_code": {
             "type": "string",
             "default": ""
+          },
+          "background_colour": {
+            "type": "string",
+            "default": "#fafafa"
           }
         }
       }

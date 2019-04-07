@@ -1186,7 +1186,7 @@
                   "type": "string"
                 }
               },
-              "hasChildren": {
+              "hasKids": {
                 "type": "boolean"
               },
               "otherPets": {
@@ -1256,6 +1256,9 @@
                 "type": "string"
               },
               "postal_code": {
+                "type": "string"
+              },
+              "background_colour": {
                 "type": "string"
               }
             }

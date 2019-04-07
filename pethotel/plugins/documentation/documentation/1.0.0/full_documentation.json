@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "03/23/2019 11:59:28 PM"
+    "x-generation-date": "04/07/2019 1:37:37 AM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -2677,7 +2677,7 @@
               }
             }
           },
-          "hasChildren": {
+          "hasKids": {
             "type": "boolean",
             "default": false
           },
@@ -2811,6 +2811,10 @@
           "postal_code": {
             "type": "string",
             "default": ""
+          },
+          "background_colour": {
+            "type": "string",
+            "default": "#fafafa"
           }
         }
       },
@@ -2833,7 +2837,7 @@
             "default": "",
             "maxLength": 6000
           },
-          "hasChildren": {
+          "hasKids": {
             "type": "boolean",
             "default": false
           },
@@ -2931,6 +2935,10 @@
           "postal_code": {
             "type": "string",
             "default": ""
+          },
+          "background_colour": {
+            "type": "string",
+            "default": "#fafafa"
           }
         }
       },
@@ -3186,7 +3194,7 @@
                   "type": "string"
                 }
               },
-              "hasChildren": {
+              "hasKids": {
                 "type": "boolean"
               },
               "otherPets": {
@@ -3256,6 +3264,9 @@
                 "type": "string"
               },
               "postal_code": {
+                "type": "string"
+              },
+              "background_colour": {
                 "type": "string"
               }
             }

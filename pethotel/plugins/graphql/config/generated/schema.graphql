@@ -68,7 +68,7 @@ input editPublicationInput {
   title: String
   description: String
   pictures: [ID]
-  hasChildren: Boolean
+  hasKids: Boolean
   otherPets: Boolean
   price: Float
   exoticPets: Boolean
@@ -92,6 +92,7 @@ input editPublicationInput {
   administrative_area_level_2: String
   administrative_area_level_1: String
   postal_code: String
+  background_colour: String
 }
 
 input editRoleInput {
@@ -175,7 +176,7 @@ type Publication {
   updated_at: DateTime!
   title: String!
   description: String
-  hasChildren: Boolean
+  hasKids: Boolean
   otherPets: Boolean
   price: Float!
   exoticPets: Boolean
@@ -199,6 +200,7 @@ type Publication {
   administrative_area_level_2: String
   administrative_area_level_1: String
   postal_code: String
+  background_colour: String
   pictures(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
 }
 
@@ -206,7 +208,7 @@ input PublicationInput {
   title: String!
   description: String
   pictures: [ID]
-  hasChildren: Boolean
+  hasKids: Boolean
   otherPets: Boolean
   price: Float!
   exoticPets: Boolean
@@ -230,6 +232,7 @@ input PublicationInput {
   administrative_area_level_2: String
   administrative_area_level_1: String
   postal_code: String
+  background_colour: String
 }
 
 type Query {

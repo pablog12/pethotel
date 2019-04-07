@@ -29,7 +29,7 @@
       "plugin": "upload",
       "required": false
     },
-    "hasChildren": {
+    "hasKids": {
       "default": false,
       "type": "boolean"
     },
@@ -132,6 +132,10 @@
     },
     "postal_code": {
       "default": "",
+      "type": "text"
+    },
+    "background_colour": {
+      "default": "#fafafa",
       "type": "text"
     }
   }
